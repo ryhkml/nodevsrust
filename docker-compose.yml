@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  node:
+    hostname: node_http
+    build:
+      context: .
+      no_cache: true
+      dockerfile: build/node/Dockerfile
+    ports:
+      - 10111:10111
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1024M
+        reservations:
+          cpus: "1"
+          memory: 512M
+  rust:
+    hostname: rust_http
+    build:
+      context: .
+      no_cache: true
+      dockerfile: build/rust/Dockerfile
+    ports:
+      - 10113:10113
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1024M
+        reservations:
+          cpus: "1"
+          memory: 512M
+
+networks:
+  net:

@@ -1,0 +1,17 @@
+[package]
+name = "nodevsrust"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+debug = false
+strip = true
+panic = "abort"
+lto = true
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = "1.0.144"
+warp = "0.3"
